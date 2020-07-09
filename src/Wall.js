@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Wall extends React.Component {
-  constructor(wall_id) {
+  constructor() {
     super();
     this.state = {
       error: null,
       isLoaded: false,
       posts: [],
-      id: wall_id,
     };
   }
 
   componentDidMount() {
-    axios.get(`/api/v1/wall/${this.state.id}`)
+    axios.get(`/api/v1/wall/${this.props.match.params.id}`)
       .then((res) => res)
       .then(
         (result) => {
