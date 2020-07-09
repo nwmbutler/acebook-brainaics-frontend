@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Users from './Users';
 import Wall from './Wall';
 import WallPost from './WallPost';
+import SigninForm from './Sessions';
 import './App.css';
 
 function App() {
@@ -27,6 +28,12 @@ function App() {
              path="/wall/:id/new"
              render= { props => (
                <WallPost {...props}/>
+             )}/>
+             <Route
+             exact
+             path="/session/new"
+             render= { props => (
+               <SigninForm {...props}/>
              )}/>
              </Switch>
             </div>

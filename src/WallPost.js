@@ -22,8 +22,9 @@ export class WallPost extends Component {
   submitForm = async (e) => {
     if (e) e.preventDefault();
     this.setState({ isSubmitting: true });
-      const result = await axios.post("/api/v1/posts", {
-      body: JSON.stringify(this.state.values),
+    const result = await axios.post("/api/v1/posts", {
+      method: "POST",
+      post: JSON.stringify(this.state.values),
       headers: {
         "Content-Type": "application/json",
       },
@@ -49,14 +50,14 @@ export class WallPost extends Component {
           value={this.state.values.message}
           required
         />
-        <input type="hidden" 
+        <input type="hidden"
           name="user_id"
-          value="2"
+          value="3"
           required
           />
-          <input type="hidden" 
+          <input type="hidden"
           name="wall_id"
-          value={this.props.match.id}
+          value="3"
           required
           />
 
