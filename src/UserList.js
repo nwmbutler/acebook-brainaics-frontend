@@ -1,36 +1,53 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import data from './API.js'
-// import './App.css';
 
-// constructor(props) {
-//   super(props)
-//   this.userList = []
-//   this.getUserList();
-// }
+class UserList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      error: null,
+      isLoaded: false,
+      users: [],
+    };
+  }
 
-//
-// componentDidMount() {
-//   this.getUserList()
-// }
-
-const userList = data.getUserList()
-console.log(userList)
-
-class UserList extends Component {
-  // data.getUserList().then((data) => {
-  //   render() {
-  //     console.log(data, 2)
-  //     return (
-  //       <div>
-  //         { data.map((user) => {
-  //           return ( <div> {user.username} </div>)
-  //         })
-  //        }
-  //      </div>
-  //     )
-  //   }
-  // }
+  componentDidMount() {
+    axios.get("/api/v1/users")
+      .then((res) => res)
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            users: [result.user_list],
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
+  render() {
+    const { error, isLoaded, users } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <section>
+          {users.map((user) => (
+            "hello"
+            // <article className="user" key={user.id}>
+              // <p>{user.username}</p>
+            // </article>
+          ))}
+        </section>
+      );
+    }
+  }
 }
 
   export default UserList
