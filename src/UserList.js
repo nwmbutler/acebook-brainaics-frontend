@@ -9,6 +9,7 @@ class UserList extends React.Component {
       isLoaded: false,
       users: [],
     };
+    console.log(this.state.users)
   }
 
   componentDidMount() {
@@ -16,9 +17,10 @@ class UserList extends React.Component {
       .then((res) => res)
       .then(
         (result) => {
+          console.log(result)
           this.setState({
             isLoaded: true,
-            users: [result.user_list],
+            users: [...result.data.user_list],
           });
         },
         (error) => {
@@ -34,15 +36,17 @@ class UserList extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
+      console.log("loading..")
       return <div>Loading...</div>;
     } else {
       return (
+        console.log(users ,1),
         <section>
           {users.map((user) => (
-            "hello"
-            // <article className="user" key={user.id}>
-            //   <p>{user.username}</p>
-            // </article>
+            console.log("loaded", user),
+            <article className="user" key={user.id}>
+              <p>{user.username}</p>
+            </article>
           ))}
         </section>
       );
