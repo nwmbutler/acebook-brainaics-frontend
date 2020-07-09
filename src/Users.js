@@ -13,4 +13,4 @@ export class Users extends Component {
   }
 }
 
-export default
+export default Users
