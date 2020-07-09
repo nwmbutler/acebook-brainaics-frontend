@@ -1,49 +1,36 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import data from './API.js'
 // import './App.css';
 
-class NameStream extends Component {
-  render() {
-    return (
-      { this.props.id }
-    )
-  }
-}
+// constructor(props) {
+//   super(props)
+//   this.userList = []
+//   this.getUserList();
+// }
+
+//
+// componentDidMount() {
+//   this.getUserList()
+// }
+
+const userList = data.getUserList()
+console.log(userList)
 
 class UserList extends Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        userList: []
-      }
-    }
-  
-    getUserList() {
-      axios.get('/api/v1/users')
-      .then(response => {
-          console.log(response.data.user_list[0].id, 1)
-        this.setState({userList: response.data})
-      })
-      .catch(error => console.log(error))
-    }
-  
-    componentDidMount() {
-      this.getUserList()
-    }
-    
-    nameLister = this.userList.map(nameListObject => {
-      return (
-        <NameStream { ...nameListObject} />
-      )
-    })     
-      
-    render() {
-      return (
-        <div>
-          { nameLister }
-       </div>
-      )
-    }
-  }
-  
+  // data.getUserList().then((data) => {
+  //   render() {
+  //     console.log(data, 2)
+  //     return (
+  //       <div>
+  //         { data.map((user) => {
+  //           return ( <div> {user.username} </div>)
+  //         })
+  //        }
+  //      </div>
+  //     )
+  //   }
+  // }
+}
+
   export default UserList
