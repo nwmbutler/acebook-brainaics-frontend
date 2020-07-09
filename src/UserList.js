@@ -41,7 +41,7 @@ class UserList extends React.Component {
           {users.map((user) => (
             "hello"
             // <article className="user" key={user.id}>
-              // <p>{user.username}</p>
+            //   <p>{user.username}</p>
             // </article>
           ))}
         </section>
