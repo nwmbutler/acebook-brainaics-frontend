@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import './App.css';
 
+class NameStream extends Component {
+  render() {
+    return (
+      { this.props.id }
+    )
+  }
+}
+
 class UserList extends Component {
     constructor(props) {
       super(props)
@@ -13,8 +21,8 @@ class UserList extends Component {
     getUserList() {
       axios.get('/api/v1/users')
       .then(response => {
-          console.log(response.data.current_user)
-        this.setState({userList: response.data.current_user.email})
+          console.log(response.data.user_list[0].id, 1)
+        this.setState({userList: response.data})
       })
       .catch(error => console.log(error))
     }
@@ -22,11 +30,17 @@ class UserList extends Component {
     componentDidMount() {
       this.getUserList()
     }
-  
+    
+    nameLister = this.userList.map(nameListObject => {
+      return (
+        <NameStream { ...nameListObject} />
+      )
+    })     
+      
     render() {
       return (
         <div>
-           {this.state.userList}
+          { nameLister }
        </div>
       )
     }
