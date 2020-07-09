@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Users from './Users';
+import Wall from './Wall';
 import './App.css';
 
 function App() {
@@ -13,6 +14,12 @@ function App() {
              path="/users"
              render= { props => (
                <Users {...props}/>
+             )}/>
+             <Route
+             exact
+             path="/wall/:id"
+             render= { props => (
+               <Wall {...props}/>
              )}/>
              </Switch>
             </div>
